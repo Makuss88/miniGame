@@ -18,7 +18,7 @@ const playerB = {
   w: 20,
   h: 100, 
   color: 'RED',
-  score: 4,
+  score: 0,
 };
 
 const ball = {
