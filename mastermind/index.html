@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8"> 
+    <title>MasterMind!</title> 
+    <link rel="stylesheet" href="style.css">
+  </head> 
+  <body>
+    <div class='container'>
+      <div class='answer flexer'>
+        <div class='answerPeg flexer hidden'>
+          <div id='answer0' class='answer-box1'></div>
+          <div id='answer1' class='answer-box1'></div>
+          <div id='answer2' class='answer-box1'></div>
+          <div id='answer3' class='answer-box1'></div>  
+        </div>
+        <button id='answer-btn' class='answer-btn'>GRAMY!</button> 
+      </div>
+      <div class='game'>
+        <div class='game-row flexer'>
+          <div class='game-pegs 9 flexer hidden'>
+            <div id='g90' class='game-peg'></div>
+            <div id='g91' class='game-peg'></div>
+            <div id='g92' class='game-peg'></div>
+            <div id='g93' class='game-peg'></div>
+          </div>
+          <div class='game-answer-pegs flexer'>
+            <div class='game-answer-peg'></div>
+            <div class='game-answer-peg'></div>
+            <div class='game-answer-peg'></div>
+            <div class='game-answer-peg'></div>
+          </div>    
+        </div>
+
+        <div class='game-row flexer'>
+          <div class='game-pegs 8 flexer hidden'>
+            <div id='g80' class='game-peg'></div>
+            <div id='g81' class='game-peg'></div>
+            <div id='g82' class='game-peg'></div>
+            <div id='g83' class='game-peg'></div>
+          </div>
+          <div class='game-answer-pegs flexer'>
+            <div class='game-answer-peg'></div>
+            <div class='game-answer-peg'></div>
+            <div class='game-answer-peg'></div>
+            <div class='game-answer-peg'></div>
+          </div>    
+        </div>
+
+        <div class='game-row flexer'>
+          <div class='game-pegs 7 flexer hidden'>
+            <div id='g70' class='game-peg'></div>
+            <div id='g71' class='game-peg'></div>
+            <div id='g72' class='game-peg'></div>
+            <div id='g73' class='game-peg'></div>
+          </div>
+          <div class='game-answer-pegs flexer'>
+            <div class='game-answer-peg'></div>
+            <div class='game-answer-peg'></div>
+            <div class='game-answer-peg'></div>
+            <div class='game-answer-peg'></div>
+          </div>    
+        </div>
+
+        <div class='game-row flexer'>
+          <div class='game-pegs 6 flexer hidden'>
+            <div id='g60' class='game-peg'></div>
+            <div id='g61' class='game-peg'></div>
+            <div id='g62' class='game-peg'></div>
+            <div id='g63' class='game-peg'></div>
+          </div>
+          <div class='game-answer-pegs flexer'>
+            <div class='game-answer-peg'></div>
+            <div class='game-answer-peg'></div>
+            <div class='game-answer-peg'></div>
+            <div class='game-answer-peg'></div>
+          </div>    
+        </div>
+
+        <div class='game-row flexer'>
+          <div class='game-pegs 5 flexer hidden'>
+            <div id='g50' class='game-peg'></div>
+            <div id='g51' class='game-peg'></div>
+            <div id='g52' class='game-peg'></div>
+            <div id='g53' class='game-peg'></div>
+          </div>
+          <div class='game-answer-pegs flexer'>
+            <div class='game-answer-peg'></div>
+            <div class='game-answer-peg'></div>
+            <div class='game-answer-peg'></div>
+            <div class='game-answer-peg'></div>
+          </div>    
+        </div>
+
+        <div class='game-row flexer'>
+          <div class='game-pegs 4 flexer hidden'>
+            <div id='g40' class='game-peg'></div>
+            <div id='g41' class='game-peg'></div>
+            <div id='g42' class='game-peg'></div>
+            <div id='g43' class='game-peg'></div>
+          </div>
+          <div class='game-answer-pegs flexer'>
+            <div class='game-answer-peg'></div>
+            <div class='game-answer-peg'></div>
+            <div class='game-answer-peg'></div>
+            <div class='game-answer-peg'></div>
+          </div>    
+        </div>
+
+        <div class='game-row flexer'>
+          <div class='game-pegs 3 flexer hidden' >
+            <div id='g30' class='game-peg'></div>
+            <div id='g31' class='game-peg'></div>
+            <div id='g32' class='game-peg'></div>
+            <div id='g33' class='game-peg'></div>
+          </div>
+          <div class='game-answer-pegs flexer'>
+            <div class='game-answer-peg'></div>
+            <div class='game-answer-peg'></div>
+            <div class='game-answer-peg'></div>
+            <div class='game-answer-peg'></div>
+          </div>    
+        </div>
+
+        <div class='game-row flexer'>
+          <div class='game-pegs 2 flexer hidden'>
+            <div id='g20' class='game-peg'></div>
+            <div id='g21' class='game-peg'></div>
+            <div id='g22' class='game-peg'></div>
+            <div id='g23' class='game-peg'></div>
+          </div>
+          <div class='game-answer-pegs flexer'>
+            <div class='game-answer-peg'></div>
+            <div class='game-answer-peg'></div>
+            <div class='game-answer-peg'></div>
+            <div class='game-answer-peg'></div>
+          </div>    
+        </div>
+
+        <div class='game-row flexer'>
+          <div class='game-pegs 1 flexer hidden'>
+            <div id='g10' class='game-peg'></div>
+            <div id='g11' class='game-peg'></div>
+            <div id='g12' class='game-peg'></div>
+            <div id='g13' class='game-peg'></div>
+          </div>
+          <div class='game-answer-pegs flexer'>
+            <div class='game-answer-peg'></div>
+            <div class='game-answer-peg'></div>
+            <div class='game-answer-peg'></div>
+            <div class='game-answer-peg'></div>
+          </div>    
+        </div>
+        <div class='game-row flexer'>
+          <div class='game-pegs 0 flexer hidden'>
+            <div id='g00' class='game-peg'></div>
+            <div id='g01' class='game-peg'></div>
+            <div id='g02' class='game-peg'></div>
+            <div id='g03' class='game-peg'></div>
+          </div>
+          <div class='game-answer-pegs flexer'>
+            <div class='game-answer-peg'></div>
+            <div class='game-answer-peg'></div>
+            <div class='game-answer-peg'></div>
+            <div class='game-answer-peg'></div>
+          </div>    
+        </div>
+      </div>
+      <div class='choice-color flexer'> 
+        <button id='red' class='btn btn-red'></button>
+        <button id='grn' class='btn btn-grn'></button>
+        <button id='yel' class='btn btn-yel'></button>
+        <button id='blu' class='btn btn-blu'></button>
+        <button id='choice' class='btn btn-choice'>???</button>
+      </div>
+    </div>
+    <script src='./main.js'></script>
+  </body>
+</html>

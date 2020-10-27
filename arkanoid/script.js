@@ -12,10 +12,12 @@ let musicStartFlag = true;
 let firstMoveFlag = false;
 let gameStart = false;
 let moveFlag = false;
+let moveEnter = false;
 
-let mus = new Audio("start.mp3");
-let bounceAudio = new Audio("bounce.wav");
-let wallAudio = new Audio("wall.wav");
+let startMusic =  new Audio("audio/start.mp3");
+let bounceAudio = new Audio("audio/bounce.wav");
+let wallAudio =   new Audio("audio/wall.wav");
+let liveAudio =   new Audio("audio/liveOver.wav");
 
 //ball
 const ball = {
@@ -133,7 +135,9 @@ const collisionBallWall = () => {
     } else {
       if (livePlayer == 1){
         gameOverFlag = true;
+        liveAudio.play();
       }
+      liveAudio.play();
       livePlayer--;
       ball.x = canvas.width / 2;
       ball.y = canvas.height - 40;
@@ -181,13 +185,17 @@ const drawText = (color) =>{
 const drawGameOver = () => {
   drawText('RED')
   ctx.fillText("Ślepa uliczka - koniec gry...", canvas.width / 2, canvas.height / 2); 
+  ctx.fillText("ENTER i grasz jeszcze raz!", canvas.width / 2, canvas.height / 2 + 80);
+  if (moveEnter) {
+    document.location.reload();
+  }
 }
 
 const drawGameWinning = () => {
   drawText('VIOLET');
   ctx.fillText("WYGRANA!", canvas.width / 2, canvas.height / 2);
-  ctx.fillText("Spacja i grasz dalej!", canvas.width / 2, canvas.height / 2 + 80);
-  if (moveSpace) {
+  ctx.fillText("ENTER i grasz jeszcze raz!", canvas.width / 2, canvas.height / 2 + 80);
+  if (moveEnter) {
     document.location.reload();
   }
 }
@@ -234,13 +242,12 @@ const draw = () =>  {
         ball.x += ball.dx;
         ball.y += ball.dy;
       } else {
-        mus.play();
+        startMusic.play();
         setTimeout(function(){ firstMove() }, 3000)  
       }
     }
   }
 }
-
 
 // add LIstner
 const keyDownHandler = (e) => {
@@ -253,6 +260,9 @@ const keyDownHandler = (e) => {
   if (e.keyCode === 32){ //space
     moveSpace = true;
   }
+  if (e.keyCode === 13){ //enter
+    moveEnter = true;
+  }
 }
 
 const keyUpHandler = (e) => {
@@ -263,12 +273,14 @@ const keyUpHandler = (e) => {
     moveRigth = false;
   }
   if (e.keyCode === 32){
-    moveSpace = true;
+    moveSpace = false;
+  }
+  if (e.keyCode === 13){
+    moveEnter = false;
   }
 }
 
 document.addEventListener('keydown', keyDownHandler, false);
 document.addEventListener('keyup', keyUpHandler, false);
-
 
 let game = setInterval(draw, 10);
