@@ -1,0 +1,70 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+body {
+  background-color: transparent;
+}
+
+title {
+  display: none;
+}
+
+.container {
+  height: 100vh;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.titleGame {
+  padding: 10px;
+  text-align: center;
+  font-size: 50px;
+  color:blue;
+  width: 600px;
+  height: 80px;
+  background: green;
+}
+
+.boardGame {
+  margin: 10px;
+  width: 600px;
+  height: 600px;
+  display: flex;
+  flex-wrap: wrap;
+  background-color: ivory;
+}
+
+.buttonGameStart {
+  width: 600px;
+  height: 40px;
+  color: blue;
+}
+
+.brick {
+  width: 60px;
+  height: 60px;
+  /* padding: 40px 0;
+  text-align: center; */
+  background-size: cover;
+  background-image: url(./floor.png);
+}
+
+.chest {
+  background-image: url(./chest.png);
+}
+
+.wall {
+  background-image: url(./wall.png);
+}
+
+.player {
+  background-image: url(./player.png);
+}
+
+.coin {
+  background-image: url(./ang.svg);   
+}
+
