@@ -1,14 +1,16 @@
 const brick = document.querySelectorAll('.brick');
+const winningGameFlag = document.getElementById("winnerFlag");
+const counterFlag = document.getElementById("moveCounter");
 
 //board
 const board = ['wall', 'wall', 'wall', 'wall', 'wall', 'wall', 'wall', 'wall', 'wall', 'wall',
                'wall', 'f', 'f', 'f', 'f', 'f', 'player', 'f', 'f', 'wall',
                'wall', 'f', 'f', 'f', 'f', 'f', 'f', 'coin', 'f', 'wall',
-               'wall', 'f', 'f', 'f', 'chest', 'f', 'f', 'f', 'f', 'wall',
+               'wall', 'f', 'f', 'f', 'chest', 'f', 'f', 'wall', 'f', 'wall',
+               'wall', 'f', 'f', 'f', 'f', 'f', 'wall', 'wall', 'f', 'wall',
+               'wall', 'f', 'f', 'f', 'f', 'f', 'wall', 'f', 'f', 'wall',
+               'wall', 'f', 'f', 'coin', 'f', 'wall', 'chest', 'wall', 'f', 'wall',
                'wall', 'f', 'f', 'f', 'f', 'f', 'f', 'f', 'f', 'wall',
-               'wall', 'f', 'f', 'f', 'f', 'f', 'f', 'f', 'f', 'wall',
-               'wall', 'f', 'f', 'coin', 'f', 'f', 'f', 'wall', 'f', 'wall',
-               'wall', 'f', 'f', 'f', 'f', 'chest', 'f', 'f', 'f', 'wall',
                'wall', 'f', 'f', 'f', 'f', 'f', 'f', 'f', 'f', 'wall',
                'wall', 'wall', 'wall', 'wall', 'wall',  'wall', 'wall', 'wall', 'wall', 'wall'];
                
@@ -24,6 +26,9 @@ let movePlayer = 0;
 
 let chest = [];
 let howManyCoins = 0;
+
+let startGame = true;
+let movingCounter = 0;
 
 //arrow function start game
 const buildBoard = (board) => {
@@ -56,8 +61,7 @@ const winningGame = () => {
     }
   }
   if (winner == howManyCoins){
-    console.log('hura')
-    console.log(movePlayer)
+    winningGameFlag.innerText = 'YOU WIN!!!';    
   }
 }
 
@@ -73,11 +77,13 @@ const movingPlayer = () => {
       brick[x].classList.remove('player');
       x = x + 1;
       movePlayer++;
+      movingCounter++;
     } else {
       brick[x + 1].classList.add('player');
       brick[x].classList.remove('player');
       x = x + 1;
       movePlayer++;
+      movingCounter++;
     }
   }
   
@@ -92,11 +98,13 @@ const movingPlayer = () => {
       brick[x].classList.remove('player');
       x = x - 1;
       movePlayer++;
+      movingCounter++;
     } else {
       brick[x - 1].classList.add('player');
       brick[x].classList.remove('player');
       x = x - 1;
       movePlayer++;
+      movingCounter++;
     }
   }
 
@@ -111,11 +119,13 @@ const movingPlayer = () => {
       brick[x].classList.remove('player');
       x = x - 10;
       movePlayer++;
+      movingCounter++;
     } else {
       brick[x - 10].classList.add('player');
       brick[x].classList.remove('player');
       x = x - 10;
       movePlayer++;
+      movingCounter++;
     }
   }
   
@@ -129,18 +139,20 @@ const movingPlayer = () => {
       brick[x].classList.remove('player');
       x = x + 10;
       movePlayer++;
+      movingCounter++;
     } else {
       brick[x + 10].classList.add('player');
       brick[x].classList.remove('player');
       x = x + 10;
       movePlayer++;
+      movingCounter++;
     }
   }
+  counterFlag.innerText = 'You move: ' + movingCounter + " times."
 }
 
 //many information
 const textInformation = () => {
-  
 }
 
 //listner
@@ -175,8 +187,6 @@ const keyUp = (e) => {
 
 
 }
-
-let startGame = true
 
 const myGame = () => {
   

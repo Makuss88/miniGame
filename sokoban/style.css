@@ -3,10 +3,6 @@
   margin: 0;
 }
 
-body {
-  background-color: transparent;
-}
-
 title {
   display: none;
 }
@@ -46,8 +42,6 @@ title {
 .brick {
   width: 60px;
   height: 60px;
-  /* padding: 40px 0;
-  text-align: center; */
   background-size: cover;
   background-image: url(./floor.png);
 }
@@ -65,6 +59,6 @@ title {
 }
 
 .coin {
-  background-image: url(./ang.svg);   
+  background-image: url(./ang.png);   
 }
 
