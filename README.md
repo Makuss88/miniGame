@@ -1,7 +1,8 @@
 # miniGame
-in this repetytory i show mini game, ex. Snake, Pong, Memory, etc...
+In this repository you can run some mini games like: "Pong", "Memory", "Sokoban"...
 
-if You want star miniGame, open .html in folder
+To run for example "Sokoban" open "sokoban" folder dictionary, and open "index.html" file in browser.
+
 ![picture](memy.png)
 ![picture](slide.png)
 ![picture](memory.png)
