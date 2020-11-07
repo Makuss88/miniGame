@@ -55,7 +55,6 @@ const bricks = [
 //moving
 let moveLeft = false;
 let moveRigth = false;
-
 let moveSpace = false;
 
 //draw ball
