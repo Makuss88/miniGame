@@ -1,0 +1,21 @@
+$primaryBtnColor: rgb(94, 96, 194);
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background: rgb(21, 94, 116);
+}
+
+.content {
+  height: 100vh;
+  border: 20px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;  
+}
+
+#myCanvas {
+  background-image: url(img/bg.png);
+  background-size: cover;
+}
