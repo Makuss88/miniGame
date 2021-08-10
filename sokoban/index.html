@@ -1,119 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Slide Game</title>
-  <link  rel='stylesheet' href='style.css' /> 
-</head>
-<body>  
-  <div class="container"> 
-    <h1 class='titleGame'>SOKOBAN</h1>
-    <div class='boardGame'>
-      <div class="brick"></div>
-      <div class="brick"></div>
-      <div class="brick"></div>
-      <div class="brick"></div>
-      <div class="brick"></div>
-      <div class="brick"></div>
-      <div class="brick"></div>
-      <div class="brick"></div>
-      <div class="brick"></div>
-      <div class="brick"></div>
-      <div class="brick"></div>
-      <div class="brick"></div>
-      <div class="brick"></div>
-      <div class="brick"></div>
-      <div class="brick"></div>
-      <div class="brick"></div>
-      <div class="brick"></div>
-      <div class="brick"></div>
-      <div class="brick"></div>
-      <div class="brick"></div>
-      <div class="brick"></div>
-      <div class="brick"></div>
-      <div class="brick"></div>
-      <div class="brick"></div>
-      <div class="brick"></div>
-      <div class="brick"></div>
-      <div class="brick"></div>
-      <div class="brick"></div>
-      <div class="brick"></div>
-      <div class="brick"></div>
-      <div class="brick"></div>
-      <div class="brick"></div>
-      <div class="brick"></div>
-      <div class="brick"></div>
-      <div class="brick"></div>
-      <div class="brick"></div>
-      <div class="brick"></div>
-      <div class="brick"></div>
-      <div class="brick"></div>
-      <div class="brick"></div>
-      <div class="brick"></div>
-      <div class="brick"></div>
-      <div class="brick"></div>
-      <div class="brick"></div>
-      <div class="brick"></div>
-      <div class="brick"></div>
-      <div class="brick"></div>
-      <div class="brick"></div>
-      <div class="brick"></div>
-      <div class="brick"></div>
-      <div class="brick"></div>
-      <div class="brick"></div>
-      <div class="brick"></div>
-      <div class="brick"></div>
-      <div class="brick"></div>
-      <div class="brick"></div>
-      <div class="brick"></div>
-      <div class="brick"></div>
-      <div class="brick"></div>
-      <div class="brick"></div>
-      <div class="brick"></div>
-      <div class="brick"></div>
-      <div class="brick"></div>
-      <div class="brick"></div>
-      <div class="brick"></div>
-      <div class="brick"></div>
-      <div class="brick"></div>
-      <div class="brick"></div>
-      <div class="brick"></div>
-      <div class="brick"></div>
-      <div class="brick"></div>
-      <div class="brick"></div>
-      <div class="brick"></div>
-      <div class="brick"></div>
-      <div class="brick"></div>
-      <div class="brick"></div>
-      <div class="brick"></div>
-      <div class="brick"></div>
-      <div class="brick"></div>
-      <div class="brick"></div>
-      <div class="brick"></div>
-      <div class="brick"></div>
-      <div class="brick"></div>
-      <div class="brick"></div>
-      <div class="brick"></div>
-      <div class="brick"></div>
-      <div class="brick"></div>
-      <div class="brick"></div>
-      <div class="brick"></div>
-      <div class="brick"></div>
-      <div class="brick"></div>
-      <div class="brick"></div>
-      <div class="brick"></div>
-      <div class="brick"></div>
-      <div class="brick"></div>
-      <div class="brick"></div>
-      <div class="brick"></div>
-      <div class="brick"></div>
-      <div class="brick"></div>
-      <div class="brick"></div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Game Sokoban" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>SOKOBAN</title>
+  </head>
+  <body onkeyup="keyHandle(event)">
+    <div class="container">
+      <h1 class="titleGame">SOKOBAN</h1>
+      <h1 id="winnerFlag">GO!</h1>
+      <button class="startButton" onclick="printBoard()">CLICK ME!</button>
+      <table style="border-spacing: 0px" id="gameTable"></table>
     </div>
-    <h1 id='winnerFlag'>GO!</h1>
-    <h1 id='moveCounter'></h1>
-  </div>
-  <script src='script.js'></script>
-</body>
+    <script src="script.js"></script>
+  </body>
 </html>

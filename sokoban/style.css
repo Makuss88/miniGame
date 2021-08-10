@@ -1,4 +1,5 @@
 * {
+  background-color: coral;
   box-sizing: border-box;
   margin: 0;
 }
@@ -7,6 +8,31 @@ title {
   display: none;
 }
 
+.startButton {
+  margin: 25px;
+  display: inline-block;
+  padding: 1 0px;
+  font-size: 24px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #4caf50;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+}
+
+.startButton:hover {
+  background-color: #3e8e41;
+}
+
+.startButton:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
 .container {
   height: 100vh;
   align-items: center;
@@ -18,47 +44,32 @@ title {
   padding: 10px;
   text-align: center;
   font-size: 50px;
-  color:blue;
+  color: blue;
   width: 600px;
   height: 80px;
   background: green;
+  border-radius: 25px;
 }
 
-.boardGame {
-  margin: 10px;
-  width: 600px;
-  height: 600px;
-  display: flex;
-  flex-wrap: wrap;
-  background-color: ivory;
+@media (max-width: 850px) {
+  .titleGame {
+    width: 40vh;
+    font-size: 40px;
+    height: 70px;
+  }
 }
 
-.buttonGameStart {
-  width: 600px;
-  height: 40px;
-  color: blue;
+.cell {
+  height: 64px;
+  width: 64px;
+  /* border: 1px solid black; */
 }
-
-.brick {
-  width: 60px;
-  height: 60px;
-  background-size: cover;
-  background-image: url(./floor.png);
+.floor {
+  background-color: grey;
 }
-
-.chest {
-  background-image: url(./chest.png);
-}
-
 .wall {
-  background-image: url(./wall.png);
+  background-color: rgb(238, 24, 24);
 }
-
-.player {
-  background-image: url(./player.png);
+.target {
+  background-color: gold;
 }
-
-.coin {
-  background-image: url(./ang.png);   
-}
-
