@@ -5,7 +5,9 @@ const GAMER = "GAMER";
 const BOX = "BOX";
 
 let gGamerPos = { i: 5, j: 4 } // position of gamer
+
 let board = new Array(8);
+
 
 const buildBoard = () => {
   for (let i = 0; i < board.length; i++) {
@@ -14,8 +16,6 @@ const buildBoard = () => {
       let cell = { type: FLOOR, gameElement: null }
       if (i === 0 || i === board.length - 1 || j === 0 || j === board[0].length - 1) {
         cell.type = WALL
-      } else {
-        // board[i][j] = FLOOR;
       }
       board[i][j] = cell
     }
