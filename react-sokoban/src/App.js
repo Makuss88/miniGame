@@ -1,15 +1,15 @@
 import React from 'react';
 
-import Header from './components/Header/Header';
-import MainSection from './components/MainSection/MainSection';
-import Footer from './components/Footer/Footer';
+import Sokoban from './components/Sokoban';
 
 const App = () => {
+  const onKeyUp = () => {
+    console.log('OK??');
+  };
+
   return (
-    <div className="container">
-      <Header />
-      <MainSection />
-      <Footer />
+    <div className="container" onKeyPress={onKeyUp} >
+      <Sokoban />
     </div>
   );
 }
