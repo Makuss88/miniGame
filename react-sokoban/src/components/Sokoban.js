@@ -7,11 +7,6 @@ import StartButton from './StartButton';
 import { StyledSokoban, StyledSokobanWrapper } from './styles/StyledSokoban';
 
 const Sokoban = () => {
-  const GAMER = {
-    name: 'GAMER',
-    posX: 2,
-    posY: 3
-  }
 
   const clickHandle = () => {
     console.log("start game")
@@ -20,7 +15,7 @@ const Sokoban = () => {
   return (
     <StyledSokobanWrapper >
       <StyledSokoban>
-        <Stage gamer={GAMER} />
+        <Stage />
         <aside>
           <div>
             <Display text="Counter" />
