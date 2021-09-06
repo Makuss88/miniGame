@@ -8,7 +8,6 @@ let gGamerPos = { i: 5, j: 4 } // position of gamer
 
 let board = new Array(8);
 
-
 const buildBoard = () => {
   for (let i = 0; i < board.length; i++) {
     board[i] = new Array(8);
@@ -16,10 +15,10 @@ const buildBoard = () => {
       let cell = { type: FLOOR, gameElement: null }
       if (i === 0 || i === board.length - 1 || j === 0 || j === board[0].length - 1) {
         cell.type = WALL
-      }
+      };
       board[i][j] = cell
-    }
-  }
+    };
+  };
   board[gGamerPos.i][gGamerPos.j].gameElement = GAMER; // place gamer => now by gGamePos
   positionOfTarget();
   positionOfBox();
@@ -40,7 +39,7 @@ const printBoard = () => {
   let table = document.getElementById('gameTable');
   let strHTML = '';
   for (let i = 0; i < gBoard.length; i++) {
-    strHTML += "<tr>"
+    strHTML += `<tr style="border: 2px solid black">`
     for (let j = 0; j < gBoard[i].length; j++) {
       let currCell = gBoard[i][j];
       let cellClass = '';
@@ -56,7 +55,7 @@ const printBoard = () => {
       strHTML += "<td class='cell " + cellClass + "' onclick='clickHandle(" + i + "," + j + ")'>"
 
       if (currCell.gameElement === GAMER) {
-        strHTML += "<img src='img/player.png'>"
+        strHTML += "<img src='img/ang.png'>"
       } else if (currCell.gameElement === BOX) {
         strHTML += "<img src='img/box.png'>"
       }

@@ -10,63 +10,52 @@ let coinsFlag = 0;
 
 const player = {
   x: 130,
-  y: 100, 
+  y: 100,
   w: 48,
   h: 64,
   color: 'RED',
 }
 
 const bricks = [
-  {x: 200, y: 400, w: 100, h: 100, color: 'BLUE', p:0},
+  { x: 200, y: 400, w: 100, h: 100, color: 'BLUE', p: 0 },
   // {x: 200, y: 300, w: 100, h: 100, color: 'BLUE', p:1},
   // {x: 400, y: 100, w: 50, h: 160, color: 'BLUE'},
   // {x: 350, y: 0,   w: 50, h: 160, color: 'BLUE'},
 ]
 
-const rect = {x: 100, y: 400, w: 100, h: 100, color: 'BLUE', p:0}
+const rect = { x: 100, y: 400, w: 100, h: 100, color: 'BLUE', p: 0 }
 
 const coins = [
-  {x: 130, y: 350, w: 30, h: 30, color: 'GREEN'},
-  {x: 230, y: 250, w: 30, h: 30, color: 'GREEN'},
-  {x: 430, y: 50, w: 30, h: 30, color: 'GREEN'}
+  { x: 130, y: 350, w: 30, h: 30, color: 'GREEN' },
+  { x: 230, y: 250, w: 30, h: 30, color: 'GREEN' },
+  { x: 430, y: 50, w: 30, h: 30, color: 'GREEN' }
 ]
 
-//colission player-brick (wall, etc.)
-// const collisionBrick = () => {
-
-
-//   if (rect.Intersects(player)){ 
-//   if (player.x < rect.x) {
-//     player.x = rect.x - player.w
-//   }
-// }
-function collisionBrick(r1,r2){
+// colission player - brick(wall, etc.)
+const collisionBrick = (r1, r2) => {
   return !(
-      r1.x > r2.x + r2.w || 
-      r1.x + r1.w < r2.x || 
-      r1.y > r2.y + r2.h || 
-      r1.y + r1.h < r2.y
+    r1.x > r2.x + r2.w ||
+    r1.x + r1.w < r2.x ||
+    r1.y > r2.y + r2.h ||
+    r1.y + r1.h < r2.y
   );
 }
 
 // if (player.y > rect.y && player.y < rect.y + rect.h) {    
-    
-  //   if (player.x < rect.x){
-  //     player.x =  rect.x - player.w
-  //   } else if (player.x > rect.x){
-  //     player.x = rect.x + rect.w
-  //   }
-  // } else if (player.x > rect.x && player.x < rect.x + rect.w) {
-    
-  //   if (player.y < rect.y){
-  //     player.y =  rect.y - player.h
-  //   } else if (player.y > rect.y){
-  //     player.y = rect.y + rect.h
-  //   }
-  // }
 
+//   if (player.x < rect.x){
+//     player.x =  rect.x - player.w
+//   } else if (player.x > rect.x){
+//     player.x = rect.x + rect.w
+//   }
+// } else if (player.x > rect.x && player.x < rect.x + rect.w) {
 
-
+//   if (player.y < rect.y){
+//     player.y =  rect.y - player.h
+//   } else if (player.y > rect.y){
+//     player.y = rect.y + rect.h
+//   }
+// }
 // }
 
 //colission player-wall (backround??)
@@ -75,11 +64,11 @@ const collisionWall = () => {
   if (player.x < 0) {
     player.x = 0;
   }
-  
+
   if (player.x > ctx.canvas.width - 48) {
     player.x = ctx.canvas.width - 48;
   }
-  
+
   if (player.y < 0) {
     player.y = 0;
   }
@@ -96,8 +85,8 @@ const collisionCoins = () => {
       brick.y = ctx.canvas.height;
       coinsFlag++;
     }
-    if (coinsFlag == coins.length) { 
-      console.log('wygarna');
+    if (coinsFlag == coins.length) {
+      // alert('wygarna');
     }
   })
 }
@@ -125,24 +114,32 @@ const drawCoins = () => {
     ctx.fillRect(coin.x, coin.y, coin.w, coin.h);
   })
 }
-
+let move = false;
 //function moving Player
 const movingPlayer = () => {
-  if (movingPlayerFlag) {
-    if (moveRigth){
-      player.x += 4;
+  if (moveRigth) {
+    player.x += 4;
+  }
+  if (moveLeft) {
+    player.x -= 4;
+  }
+  if (moveUp) {
+    player.y -= 4;
+  }
+  if (!moveUp) {
+    if (collisionBrick(player, bricks[0])) {
+      move = true;
+    }
+    if (move) {
+      player.y += 0;
+    }
+    else {
+      player.y += 4;
+      move = false;
     }
   }
-    if (moveLeft){
-      player.x -= 4;
-    }
-    if (moveUp){
-      player.y -= 4;
-    }
-    if (!moveUp){
-      player.y += 4;
-    }
-  
+  // }
+
 }
 
 //function draw in loop
@@ -163,31 +160,31 @@ const game = () => {
   draw();
   movingPlayer();
   collisionWall();
-  console.log(collisionBrick(player, bricks[0]));
+  // console.log(collisionBrick(player, bricks[0]));
   collisionCoins();
 }
 
 //add EventListner about keypress
 const keyDownHandler = (e) => {
-  if (e.keyCode === 37){ //left
+  if (e.keyCode === 37) { //left
     moveLeft = true;
   }
-  if (e.keyCode === 39){ //rigth
+  if (e.keyCode === 39) { //rigth
     moveRigth = true;
   }
-  if (e.keyCode === 38){ //space
+  if (e.keyCode === 38) { //space
     moveUp = true;
   }
 }
 
 const keyUpHandler = (e) => {
-  if (e.keyCode === 37){
+  if (e.keyCode === 37) {
     moveLeft = false;
   }
-  if (e.keyCode === 39){
+  if (e.keyCode === 39) {
     moveRigth = false;
   }
-  if (e.keyCode === 38){
+  if (e.keyCode === 38) {
     moveUp = false;
   }
 }
@@ -195,5 +192,5 @@ const keyUpHandler = (e) => {
 document.addEventListener('keydown', keyDownHandler, false);
 document.addEventListener('keyup', keyUpHandler, false);
 
-imgPlayer.src = "img/player.png";   
+imgPlayer.src = "img/player.png";
 imgPlayer.onload = game;

@@ -55,9 +55,9 @@ const answerPeg = document.querySelectorAll('.answerPeg');
 const mixingColors = [];
 let answerBefore = ['sienna', 'sienna', 'sienna', 'sienna'];
 
-let answer = []; 
+let answer = [];
 let textPlayer = [];
-let winnerFlag = false; 
+let winnerFlag = false;
 
 const choiceBtn = document.getElementById('choice');
 const pegs = document.getElementsByClassName('game-pegs');
@@ -74,8 +74,8 @@ let mixingFlag = true;
 
 // **mixing color at start game
 const mixing = () => {
-	const colors = ['red', 'yellow', 'green', 'blue']
-  answ.map((i) => {i.style.backgroundColor = colors[Math.ceil(Math.random() * colors.length)-1]})
+  const colors = ['red', 'yellow', 'green', 'blue']
+  answ.map((i) => { i.style.backgroundColor = colors[Math.ceil(Math.random() * colors.length) - 1] })
 };
 
 
@@ -83,63 +83,63 @@ const mixing = () => {
 let counter = 0;
 const count = () => {
   // mapuj to
-	for (let i = 0; i < 10; i++) {
-		if (pegs[i].classList[1] == counter){
-			pegs[i].style.borderColor = 'yellow';
-			pegs[i].style.borderStyle = 'solid';
-			pegs[i].style.borderWidth = '2px';
-		} else {
-			pegs[i].style.borderColor = 'black';
-			pegs[i].style.borderWidth = '1px';
-		}
-	};
-	counter ++;
+  for (let i = 0; i < 10; i++) {
+    if (pegs[i].classList[1] == counter) {
+      pegs[i].style.borderColor = 'yellow';
+      pegs[i].style.borderStyle = 'solid';
+      pegs[i].style.borderWidth = '2px';
+    } else {
+      pegs[i].style.borderColor = 'black';
+      pegs[i].style.borderWidth = '1px';
+    }
+  };
+  counter++;
 };
 
 // *** ukrywanie klapki nad odpowiedza
 const change = () => {
-	if (answerBox.classList[1] == 'hidden') {
-		answerBox.classList.remove('hidden')
-		answerBox2.classList.add('hidden')
-	} else {
-		answerBox.classList.add('hidden')
-		answerBox2.classList.remove('hidden')
-	}
+  if (answerBox.classList[1] == 'hidden') {
+    answerBox.classList.remove('hidden')
+    answerBox2.classList.add('hidden')
+  } else {
+    answerBox.classList.add('hidden')
+    answerBox2.classList.remove('hidden')
+  }
 };
 
 const hiddenRow = () => {
-	hiddenRows[9-counter].classList.remove('hidden');
-	if(winnerFlag) {
-		answerPeg[0].classList.remove('hidden')
+  hiddenRows[9 - counter].classList.remove('hidden');
+  if (winnerFlag) {
+    answerPeg[0].classList.remove('hidden')
     alert('WINNER!')
-	}
+  }
 };
 
 //*** wybor koloru do gry
 let choice;
 
 red.onclick = () => {
-	choice = 'red';
-	choiceBtn.style.backgroundColor = choice;
-	choiceBtn.innerHTML = 'RED'	
+  choice = 'red';
+  choiceBtn.style.backgroundColor = choice;
+  choiceBtn.innerHTML = 'RED'
 };
 
 yel.onclick = () => {
-	choice = 'yellow';
-	choiceBtn.style.backgroundColor = choice;
-	choiceBtn.innerHTML = 'YEL'
+  choice = 'yellow';
+  choiceBtn.style.backgroundColor = choice;
+  choiceBtn.innerHTML = 'YEL'
 };
 
 grn.onclick = () => {
-	choice = 'green'
-	choiceBtn.style.backgroundColor = choice;
-	choiceBtn.innerHTML = 'GRE'
+  choice = 'green'
+  choiceBtn.style.backgroundColor = choice;
+  choiceBtn.innerHTML = 'GRE'
 };
 
 blu.onclick = () => {
-	choice = 'blue'
-	choiceBtn.style.backgroundColor = choice;
-	choiceBtn.innerHTML = 'BLU'
+  choice = 'blue'
+  choiceBtn.style.backgroundColor = choice;
+  choiceBtn.innerHTML = 'BLU'
 };
 
 g00.onclick = () => g00.style.backgroundColor = choice;
@@ -185,112 +185,115 @@ g93.onclick = () => g93.style.backgroundColor = choice;
 
 const changePegs = () => {
 
-	answer = [ans0.style.backgroundColor, ans1.style.backgroundColor, ans2.style.backgroundColor, ans3.style.backgroundColor]; 
-	
-	switch (counter - 1) {
-		case 0:
-			textPlayer = [g00.style.backgroundColor, g01.style.backgroundColor, g02.style.backgroundColor, g03.style.backgroundColor];
-			break;
-		case 1:
-			textPlayer = [g10.style.backgroundColor, g11.style.backgroundColor, g12.style.backgroundColor, g13.style.backgroundColor];
-			break;
-		case 2:
-			textPlayer = [g20.style.backgroundColor, g21.style.backgroundColor, g22.style.backgroundColor, g23.style.backgroundColor];
-			break;
-		case 3:
-			textPlayer = [g30.style.backgroundColor, g31.style.backgroundColor, g32.style.backgroundColor, g33.style.backgroundColor];
-			break;
-		case 4:
-			textPlayer = [g40.style.backgroundColor, g41.style.backgroundColor, g42.style.backgroundColor, g43.style.backgroundColor];
-			break;
-		case 5:
-			textPlayer = [g50.style.backgroundColor, g51.style.backgroundColor, g52.style.backgroundColor, g53.style.backgroundColor];
-			break;
-		case 6:
-			textPlayer = [g60.style.backgroundColor, g61.style.backgroundColor, g62.style.backgroundColor, g63.style.backgroundColor];
-			break;
-		case 7:
-			textPlayer = [g70.style.backgroundColor, g71.style.backgroundColor, g72.style.backgroundColor, g73.style.backgroundColor];
-			break;
-		case 8:
-			textPlayer = [g80.style.backgroundColor, g81.style.backgroundColor, g82.style.backgroundColor, g83.style.backgroundColor];
-			break;
-		case 9:
-			textPlayer = [g90.style.backgroundColor, g91.style.backgroundColor, g92.style.backgroundColor, g93.style.backgroundColor];
-			break;
-		}
+  answer = [ans0.style.backgroundColor, ans1.style.backgroundColor, ans2.style.backgroundColor, ans3.style.backgroundColor];
 
-	if (JSON.stringify(answer) === JSON.stringify(textPlayer)) {
-		winnerFlag = true;
-	} 
+  switch (counter - 1) {
+    case 0:
+      textPlayer = [g00.style.backgroundColor, g01.style.backgroundColor, g02.style.backgroundColor, g03.style.backgroundColor];
+      break;
+    case 1:
+      textPlayer = [g10.style.backgroundColor, g11.style.backgroundColor, g12.style.backgroundColor, g13.style.backgroundColor];
+      break;
+    case 2:
+      textPlayer = [g20.style.backgroundColor, g21.style.backgroundColor, g22.style.backgroundColor, g23.style.backgroundColor];
+      break;
+    case 3:
+      textPlayer = [g30.style.backgroundColor, g31.style.backgroundColor, g32.style.backgroundColor, g33.style.backgroundColor];
+      break;
+    case 4:
+      textPlayer = [g40.style.backgroundColor, g41.style.backgroundColor, g42.style.backgroundColor, g43.style.backgroundColor];
+      break;
+    case 5:
+      textPlayer = [g50.style.backgroundColor, g51.style.backgroundColor, g52.style.backgroundColor, g53.style.backgroundColor];
+      break;
+    case 6:
+      textPlayer = [g60.style.backgroundColor, g61.style.backgroundColor, g62.style.backgroundColor, g63.style.backgroundColor];
+      break;
+    case 7:
+      textPlayer = [g70.style.backgroundColor, g71.style.backgroundColor, g72.style.backgroundColor, g73.style.backgroundColor];
+      break;
+    case 8:
+      textPlayer = [g80.style.backgroundColor, g81.style.backgroundColor, g82.style.backgroundColor, g83.style.backgroundColor];
+      break;
+    case 9:
+      textPlayer = [g90.style.backgroundColor, g91.style.backgroundColor, g92.style.backgroundColor, g93.style.backgroundColor];
+      break;
+  }
+
+  if (JSON.stringify(answer) === JSON.stringify(textPlayer)) {
+    winnerFlag = true;
+  }
 };
 
+const abc = () => {
+  for (let i = 0; i < 4; i++) { answerPegs[4 * (11 - counter) + i].style.backgroundColor = answerBefore[i] }
+}
 const changePegsAnswer = () => {
-	switch (counter) {
+  switch (counter) {
     case 0:
-      for(let i = 0 ; i < 4; i++ ){answerPegs[4 * (11 - counter) + i].style.backgroundColor = answerBefore[i]}
+      abc();
       break;
-		case 1:
-      for(let i = 0 ; i < 4; i++ ){answerPegs[4 * (11 - counter) + i].style.backgroundColor = answerBefore[i]}
+    case 1:
+      abc();
       break;
-		case 2:
-      for(let i = 0 ; i < 4; i++ ){answerPegs[4 * (11 - counter) + i].style.backgroundColor = answerBefore[i]}
+    case 2:
+      abc();
       break;
-		case 3:
-      for(let i = 0 ; i < 4; i++ ){answerPegs[4 * (11 - counter) + i].style.backgroundColor = answerBefore[i]}
+    case 3:
+      abc();
       break;
-		case 4:
-      for(let i = 0 ; i < 4; i++ ){answerPegs[4 * (11 - counter) + i].style.backgroundColor = answerBefore[i]}
+    case 4:
+      abc();
       break;
-		case 5:
-      for(let i = 0 ; i < 4; i++ ){answerPegs[4 * (11 - counter) + i].style.backgroundColor = answerBefore[i]}
+    case 5:
+      abc();
       break;
-		case 6:
-      for(let i = 0 ; i < 4; i++ ){answerPegs[4 * (11 - counter) + i].style.backgroundColor = answerBefore[i]}
+    case 6:
+      abc();
       break;
-		case 7:
-      for(let i = 0 ; i < 4; i++ ){answerPegs[4 * (11 - counter) + i].style.backgroundColor = answerBefore[i]}
+    case 7:
+      abc();
       break;
-		case 8:
-      for(let i = 0 ; i < 4; i++ ){answerPegs[4 * (11 - counter) + i].style.backgroundColor = answerBefore[i]}
+    case 8:
+      abc();
       break;
-		case 9:
-      for(let i = 0 ; i < 4; i++ ){answerPegs[4 * (11 - counter) + i].style.backgroundColor = answerBefore[i]}
+    case 9:
+      abc();
       break;
-		}
+  }
 };
 
 const showPegs = () => {
-	let pegBlack = 0;
-	let pegWhite = 0;
-	let answerModify = answer.slice();
-	let playerModify = textPlayer.slice();
-	answerBefore = ['sienna', 'sienna', 'sienna', 'sienna'];
-	for (let i = 0; i < answer.length; i++) {
-		if (answer[i] === textPlayer[i]) {
-			pegBlack++;
-			answerModify.splice(i,1, '+');
-      playerModify.splice(i,1, '-');
-		} 
-	}
-
-	for (let i = 0; i < 4; i++) {
-		for (let j = 0; j < 4; j++) {
-			if (answerModify[i] === playerModify[j]){
-        pegWhite++;
-        playerModify.splice(j,1,'*')
-        break;
-			}	
-		}
-	}
+  let pegBlack = 0;
+  let pegWhite = 0;
+  let answerModify = answer.slice();
+  let playerModify = textPlayer.slice();
+  answerBefore = ['sienna', 'sienna', 'sienna', 'sienna'];
+  for (let i = 0; i < answer.length; i++) {
+    if (answer[i] === textPlayer[i]) {
+      pegBlack++;
+      answerModify.splice(i, 1, '+');
+      playerModify.splice(i, 1, '-');
+    }
+  }
 
   for (let i = 0; i < 4; i++) {
-    if (pegBlack > 0){
+    for (let j = 0; j < 4; j++) {
+      if (answerModify[i] === playerModify[j]) {
+        pegWhite++;
+        playerModify.splice(j, 1, '*')
+        break;
+      }
+    }
+  }
+
+  for (let i = 0; i < 4; i++) {
+    if (pegBlack > 0) {
       answerBefore.splice(i, 1, 'black')
       pegBlack--;
       continue;
     }
-    if (pegWhite > 0){
+    if (pegWhite > 0) {
       answerBefore.splice(i, 1, 'white')
       pegWhite--;
       continue;
@@ -299,17 +302,17 @@ const showPegs = () => {
 }
 
 answerBtn.onclick = () => {
-	if (counter > 9){
+  if (counter > 9) {
     alert('dupka! przegrane!');
     answerPeg[0].classList.remove('hidden');
-	}
-	changePegs();
-	hiddenRow();
-	if (mixingFlag) {
-		mixing();
-		mixingFlag = false;
-	}
-	count();
+  }
+  changePegs();
+  hiddenRow();
+  if (mixingFlag) {
+    mixing();
+    mixingFlag = false;
+  }
+  count();
   showPegs();
   changePegsAnswer();
 };

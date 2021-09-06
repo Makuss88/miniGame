@@ -11,36 +11,25 @@ const TARGET = 'TARGET';
 
 const LEVELS = {
   id_1: {
-    BOX: [[3, 2], [3, 3], [2, 4], [4, 5]],
-    TARGET: [[3, 1], [3, 5], [4, 3], [5, 3]],
-    WALL: [[1, 3], [4, 2], [4, 4], [2, 5], [4, 6], [5, 6]],
-    GAMER: [1, 6],
-    numRows: 7,
-    numCols: 8
+    BOX: [[1, 3], [2, 3]],
+    TARGET: [[1, 1], [4, 3]],
+    WALL: [[2, 1], [2, 2], [3, 1], [3, 2], [3, 4], [4, 1], [4, 2], [4, 4]],
+    GAMER: [1, 4],
+    numRows: 6,
+    numCols: 6
   },
 }
 
 const Stage = () => {
-
-  useEffect(() => {
-    const dupa = (event) => {
-      // console.log(event.key)
-    };
-    window.addEventListener("keydown", dupa)
-    return () => {
-      window.removeEventListener("keydown", dupa)
-    }
-  }, []);
-
   const [gamerX, setGamerX] = useState(LEVELS.id_1.GAMER[0]);
   const [gamerY, setGamerY] = useState(LEVELS.id_1.GAMER[1]);
 
   const printBoard = () => {
-    let board = new Array(8);
+    let board = new Array(LEVELS.id_1.numRows);
     for (let i = 0; i < LEVELS.id_1.numRows; i++) {
-      board[i] = new Array(8);
+      board[i] = new Array(LEVELS.id_1.numCols);
       for (let j = 0; j < LEVELS.id_1.numCols; j++) {
-        let cell = { type: FLOOR };
+        let cell = { type: FLOOR, gameDynamic: FLOOR };
         if (i === 0 || i === LEVELS.id_1.numRows - 1 || j === 0 || j === LEVELS.id_1.numCols - 1) {
           cell = { type: WALL };
         };
@@ -55,26 +44,26 @@ const Stage = () => {
   }
 
   const printGamer = (board) => {
-    board[LEVELS.id_1.GAMER[0]][LEVELS.id_1.GAMER[1]] = { type: GAMER }
+    board[LEVELS.id_1.GAMER[0]][LEVELS.id_1.GAMER[1]] = { type: FLOOR, gameDynamic: GAMER }
   }
 
   const printBox = (board) => {
     const print = (index) => {
-      board[index[0]][index[1]] = { type: BOX }
+      board[index[0]][index[1]] = { type: FLOOR, gameDynamic: BOX }
     }
     LEVELS.id_1.BOX.forEach(print);
   }
 
-  const printTarget = (board) => {
+  const printWall = (board) => {
     const print = (index) => {
       board[index[0]][index[1]] = { type: WALL }
     }
     LEVELS.id_1.WALL.forEach(print);
   }
 
-  const printWall = (board) => {
+  const printTarget = (board) => {
     const print = (index) => {
-      board[index[0]][index[1]] = { type: TARGET }
+      board[index[0]][index[1]] = { type: FLOOR, gameDynamic: TARGET, target: TARGET }
     }
     LEVELS.id_1.TARGET.forEach(print);
   }
@@ -92,41 +81,72 @@ const Stage = () => {
       if ((iAbs === 1 && kAbs === 0) || (kAbs === 1 && iAbs === 0)) {
         if (grid[i][k].type !== WALL) {
           let canMove = true;
-          if (grid[i][k].type === BOX) {
-            if (grid[i + iDiff][k + kDiff].type !== WALL && grid[i + iDiff][k + kDiff].type !== BOX) {
-              gridCopy[i][k] = { type: GAMER };
-              gridCopy[i + iDiff][k + kDiff] = { type: BOX };
+          if (grid[i][k].gameDynamic === BOX) {
+            if (grid[i + iDiff][k + kDiff].type !== WALL && grid[i + iDiff][k + kDiff].type === FLOOR) {
+              gridCopy[i][k] = { type: FLOOR, gameDynamic: FLOOR };
+              gridCopy[i + iDiff][k + kDiff] = { type: FLOOR, gameDynamic: BOX };
             } else {
               canMove = false
             }
           }
           if (canMove) {
-            gridCopy[i][k] = { type: GAMER }
-            gridCopy[gamerX][gamerY] = { type: FLOOR }
+            gridCopy[gamerX][gamerY] = { type: FLOOR, gameDynamic: FLOOR }
+            // printTarget(gridCopy)
             setGamerX(i)
             setGamerY(k)
+            gridCopy[i][k] = { type: FLOOR, gameDynamic: GAMER }
           }
         }
       }
     })
-    setGrid(newGrid)
-  }
+    setGrid(newGrid);
+  };
 
+
+  useEffect(() => {
+    const moveByKey = (event) => {
+      switch (event.keyCode) {
+        case 37:
+          moveHandler(gamerX, gamerY - 1);
+          break;
+        case 38:
+          moveHandler(gamerX - 1, gamerY);
+          break;
+        case 39:
+          moveHandler(gamerX, gamerY + 1);
+          break;
+        case 40:
+          moveHandler(gamerX + 1, gamerY);
+          break;
+        default:
+          console.log(event.key)
+      };
+    };
+    window.addEventListener("keydown", moveByKey);
+    return () => {
+      window.removeEventListener("keydown", moveByKey);
+    };
+  });
+
+  const wrapperStyle = {
+    display: 'grid',
+    gridTemplateColumns: 'repeat(' + LEVELS.id_1.numRows + ', 60px)',
+  };
 
   return (
-    <div className={'wrapper'}>
+    <div style={wrapperStyle}>
       {
         grid.map((rows, i) =>
-          rows.map((col, k) =>
+          rows.map((col, j) =>
             <div
-              key={`${i}-${k}`}
-              className={grid[i][k].type + " board"}
-              onClick={() => moveHandler(i, k)}
+              key={`${i}-${j}`}
+              className={grid[i][j].type + " " + grid[i][j].gameDynamic + " board"}
+              onClick={() => moveHandler(i, j)}
             />)
         )
       }
     </div >
-  )
+  );
 };
 
 export default Stage;

@@ -33,6 +33,7 @@ title {
   box-shadow: 0 5px #666;
   transform: translateY(4px);
 }
+
 .container {
   height: 100vh;
   align-items: center;
@@ -62,14 +63,19 @@ title {
 .cell {
   height: 64px;
   width: 64px;
-  /* border: 1px solid black; */
+  border: 2px solid black;
 }
+
 .floor {
-  background-color: grey;
+  /* background-color: grey; */
+  background-image: url(./img/floor.png);
+  z-index: 2;
 }
+
 .wall {
   background-color: rgb(238, 24, 24);
 }
+
 .target {
   background-color: gold;
 }

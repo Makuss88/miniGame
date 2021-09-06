@@ -1,16 +1,12 @@
 .board {
-  width: 40px;
-  height: 40px;
-  border: 1px solid black;
-}
-
-.wrapper {
-  display: grid;
-  grid-template-columns: repeat(8, 40px);
+  width: 60px;
+  height: 60px;
+  border: 1px solid rgb(0, 0, 0);
 }
 
 .WALL {
-  background-color: saddlebrown;
+  background-image: url("../../img/wall2.jpg");
+  background-size: contain;
 }
 
 .FLOOR {
@@ -19,12 +15,15 @@
 
 .GAMER {
   background-color: darkblue;
+  z-index: 9;
 }
 
 .BOX {
-  background-color: darkgoldenrod;
+  background-color: gold;
+  z-index: 2;
 }
 
 .TARGET {
-  background-color: darkorange;
+  background-color: chartreuse;
+  z-index: 1;
 }

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import Stage from './Stage';
 import Display from './Display';
@@ -9,8 +9,12 @@ import { StyledSokoban, StyledSokobanWrapper } from './styles/StyledSokoban';
 const Sokoban = () => {
 
   const clickHandle = () => {
-    console.log("start game")
+    window.location.reload();
   }
+
+  const [counter, setCounter] = useState(0);
+  // setCounter(1);
+  const counterText = "Counter " + counter;
 
   return (
     <StyledSokobanWrapper >
@@ -18,7 +22,7 @@ const Sokoban = () => {
         <Stage />
         <aside>
           <div>
-            <Display text="Counter" />
+            <Display text={counterText} />
             <Display text="Level" />
           </div>
           <StartButton onClick={clickHandle} />
