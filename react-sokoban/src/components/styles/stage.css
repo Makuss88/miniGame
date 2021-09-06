@@ -11,20 +11,25 @@
 
 .WALL {
   background-color: saddlebrown;
+  z-index: 2;
 }
 
 .FLOOR {
   background-color: grey;
+  z-index: 1;
 }
 
 .GAMER {
   background-color: darkblue;
+  z-index: 5;
 }
 
 .BOX {
   background-color: darkgoldenrod;
+  z-index: 4;
 }
 
 .TARGET {
-  background-color: darkorange;
+  background-color: chartreuse;
+  z-index: 3;
 }
