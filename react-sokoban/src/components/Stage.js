@@ -6,21 +6,22 @@ import './styles/stage.css'
 const WALL = "WALL";
 const FLOOR = "FLOOR";
 const BOX = "BOX";
+const BOX_CLOSE = "BOX-CLOSE";
 const GAMER = "GAMER";
 const TARGET = 'TARGET';
 
 const LEVELS = {
   id_1: {
-    BOX: [[1, 3], [2, 3]],
-    TARGET: [[1, 1], [4, 3]],
-    WALL: [[2, 1], [2, 2], [3, 1], [3, 2], [3, 4], [4, 1], [4, 2], [4, 4]],
+    BOX: [{ id: 1, x: 1, y: 3 }, { id: 2, x: 2, y: 3 }],
+    TARGET: [[1, 1], [3, 3]],
+    WALL: [[2, 1], [2, 2], [3, 1], [3, 2], [3, 2], [4, 1], [4, 2], [4, 4]],
     GAMER: [1, 4],
     numRows: 6,
     numCols: 6
   },
 }
 
-const Stage = () => {
+const Stage = (props) => {
   const [gamerX, setGamerX] = useState(LEVELS.id_1.GAMER[0]);
   const [gamerY, setGamerY] = useState(LEVELS.id_1.GAMER[1]);
 
@@ -29,7 +30,7 @@ const Stage = () => {
     for (let i = 0; i < LEVELS.id_1.numRows; i++) {
       board[i] = new Array(LEVELS.id_1.numCols);
       for (let j = 0; j < LEVELS.id_1.numCols; j++) {
-        let cell = { type: FLOOR, gameDynamic: FLOOR };
+        let cell = { type: FLOOR };
         if (i === 0 || i === LEVELS.id_1.numRows - 1 || j === 0 || j === LEVELS.id_1.numCols - 1) {
           cell = { type: WALL };
         };
@@ -44,14 +45,14 @@ const Stage = () => {
   }
 
   const printGamer = (board) => {
-    board[LEVELS.id_1.GAMER[0]][LEVELS.id_1.GAMER[1]] = { type: FLOOR, gameDynamic: GAMER }
+    board[LEVELS.id_1.GAMER[0]][LEVELS.id_1.GAMER[1]] = { type: GAMER }
   }
 
   const printBox = (board) => {
     const print = (index) => {
-      board[index[0]][index[1]] = { type: FLOOR, gameDynamic: BOX }
+      board[index.x][index.y] = { type: BOX }
     }
-    LEVELS.id_1.BOX.forEach(print);
+    LEVELS.id_1.BOX.forEach(print)
   }
 
   const printWall = (board) => {
@@ -63,10 +64,12 @@ const Stage = () => {
 
   const printTarget = (board) => {
     const print = (index) => {
-      board[index[0]][index[1]] = { type: FLOOR, gameDynamic: TARGET, target: TARGET }
+      board[index[0]][index[1]] = { type: TARGET }
     }
     LEVELS.id_1.TARGET.forEach(print);
   }
+
+  const [winner, setWinner] = useState(0);
 
   const initialGame = printBoard()
   const [grid, setGrid] = useState(initialGame)
@@ -78,23 +81,42 @@ const Stage = () => {
       let iAbs = Math.abs(i - gamerX);
       let kAbs = Math.abs(k - gamerY);
 
+      const sprawdzamBox = () => {
+        let xBox = i + iDiff;
+        let yBox = k + kDiff;
+        let arrBox = [xBox, yBox]
+        let stringBox = arrBox.toString();
+
+        for (let i = 0; i < LEVELS.id_1.TARGET.length; i++) {
+          let stringTarget = LEVELS.id_1.TARGET[i].toString();
+          if (stringBox === stringTarget) {
+            console.log()
+            gridCopy[xBox][yBox] = { type: BOX_CLOSE };
+            setWinner(winner + 1);
+          } else {
+            gridCopy[xBox][yBox] = { type: BOX };
+          }
+        }
+      }
       if ((iAbs === 1 && kAbs === 0) || (kAbs === 1 && iAbs === 0)) {
         if (grid[i][k].type !== WALL) {
           let canMove = true;
-          if (grid[i][k].gameDynamic === BOX) {
-            if (grid[i + iDiff][k + kDiff].type !== WALL && grid[i + iDiff][k + kDiff].type === FLOOR) {
-              gridCopy[i][k] = { type: FLOOR, gameDynamic: FLOOR };
-              gridCopy[i + iDiff][k + kDiff] = { type: FLOOR, gameDynamic: BOX };
+          if (grid[i][k].type === BOX) {
+            if (grid[i + iDiff][k + kDiff].type !== WALL &&
+              (grid[i + iDiff][k + kDiff].type === FLOOR ||
+                grid[i + iDiff][k + kDiff].type === TARGET)) {
+              gridCopy[i][k] = { type: FLOOR };
+              sprawdzamBox();
             } else {
               canMove = false
             }
           }
           if (canMove) {
-            gridCopy[gamerX][gamerY] = { type: FLOOR, gameDynamic: FLOOR }
-            // printTarget(gridCopy)
+            gridCopy[gamerX][gamerY] = { type: FLOOR }
+            printTarget(gridCopy);
             setGamerX(i)
             setGamerY(k)
-            gridCopy[i][k] = { type: FLOOR, gameDynamic: GAMER }
+            gridCopy[i][k] = { type: GAMER }
           }
         }
       }
@@ -107,24 +129,32 @@ const Stage = () => {
     const moveByKey = (event) => {
       switch (event.keyCode) {
         case 37:
+          props.onMoveHandler();
           moveHandler(gamerX, gamerY - 1);
           break;
         case 38:
+          props.onMoveHandler();
           moveHandler(gamerX - 1, gamerY);
           break;
         case 39:
+          props.onMoveHandler();
           moveHandler(gamerX, gamerY + 1);
           break;
         case 40:
+          props.onMoveHandler();
           moveHandler(gamerX + 1, gamerY);
           break;
         default:
-          console.log(event.key)
       };
     };
     window.addEventListener("keydown", moveByKey);
     return () => {
       window.removeEventListener("keydown", moveByKey);
+      if (winner === 2) {
+        setTimeout(() => {
+          console.log("OKOK")
+        }, 250)
+      }
     };
   });
 
@@ -140,7 +170,7 @@ const Stage = () => {
           rows.map((col, j) =>
             <div
               key={`${i}-${j}`}
-              className={grid[i][j].type + " " + grid[i][j].gameDynamic + " board"}
+              className={grid[i][j].type + " board"}
               onClick={() => moveHandler(i, j)}
             />)
         )

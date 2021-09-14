@@ -13,17 +13,23 @@ const Sokoban = () => {
   }
 
   const [counter, setCounter] = useState(0);
-  // setCounter(1);
+
+  const moveHandler = () => {
+    setCounter(counter + 1)
+  }
+
   const counterText = "Counter " + counter;
+
+  const leverNumber = "Level no. " + 1;
 
   return (
     <StyledSokobanWrapper >
       <StyledSokoban>
-        <Stage />
+        <Stage onMoveHandler={moveHandler} />
         <aside>
           <div>
             <Display text={counterText} />
-            <Display text="Level" />
+            <Display text={leverNumber} />
           </div>
           <StartButton onClick={clickHandle} />
         </aside>

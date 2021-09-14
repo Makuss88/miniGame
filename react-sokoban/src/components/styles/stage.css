@@ -10,20 +10,29 @@
 }
 
 .FLOOR {
-  background-color: grey;
+  background-image: url("../../img/floor.png");
+  background-size: contain;
 }
 
 .GAMER {
-  background-color: darkblue;
-  z-index: 9;
+  background-image: url("../../img/player.png");
+  background-size: contain;
+  z-index: 9999;
 }
 
 .BOX {
-  background-color: gold;
-  z-index: 2;
+  background-image: url("../../img/boxOpen.png");
+  background-size: contain;
+  z-index: 9;
 }
 
 .TARGET {
-  background-color: chartreuse;
-  z-index: 1;
+  background-image: url("../../img/star.png");
+  background-size: contain;
+}
+
+.BOX-CLOSE {
+  background-image: url("../../img/boxClose.png");
+  background-size: contain;
+  z-index: 99;
 }
