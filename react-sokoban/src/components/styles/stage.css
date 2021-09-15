@@ -17,7 +17,7 @@
 .GAMER {
   background-image: url("../../img/player.png");
   background-size: contain;
-  z-index: 9999;
+  z-index: 999;
 }
 
 .BOX {

@@ -24,13 +24,17 @@ const LEVELS = {
 const Stage = (props) => {
   const [gamerX, setGamerX] = useState(LEVELS.id_1.GAMER[0]);
   const [gamerY, setGamerY] = useState(LEVELS.id_1.GAMER[1]);
+  const [tarX, setTarX] = useState();
+  const [tarY, setTarY] = useState();
+  const [targ, setTarg] = useState(false);
+
 
   const printBoard = () => {
     let board = new Array(LEVELS.id_1.numRows);
     for (let i = 0; i < LEVELS.id_1.numRows; i++) {
       board[i] = new Array(LEVELS.id_1.numCols);
       for (let j = 0; j < LEVELS.id_1.numCols; j++) {
-        let cell = { type: FLOOR };
+        let cell = { type: FLOOR, gameDynamic: FLOOR };
         if (i === 0 || i === LEVELS.id_1.numRows - 1 || j === 0 || j === LEVELS.id_1.numCols - 1) {
           cell = { type: WALL };
         };
@@ -38,14 +42,13 @@ const Stage = (props) => {
       };
     };
     printGamer(board);
-    printBox(board);
+    // printBox(board);
     printTarget(board);
-    printWall(board);
+    // printWall(board);
     return board;
   }
-
   const printGamer = (board) => {
-    board[LEVELS.id_1.GAMER[0]][LEVELS.id_1.GAMER[1]] = { type: GAMER }
+    board[LEVELS.id_1.GAMER[0]][LEVELS.id_1.GAMER[1]] = { type: FLOOR, gameDynamic: GAMER }
   }
 
   const printBox = (board) => {
@@ -64,7 +67,7 @@ const Stage = (props) => {
 
   const printTarget = (board) => {
     const print = (index) => {
-      board[index[0]][index[1]] = { type: TARGET }
+      board[index[0]][index[1]] = { type: FLOOR, gameDynamic: TARGET, target: TARGET }
     }
     LEVELS.id_1.TARGET.forEach(print);
   }
@@ -162,6 +165,36 @@ const Stage = (props) => {
     display: 'grid',
     gridTemplateColumns: 'repeat(' + LEVELS.id_1.numRows + ', 60px)',
   };
+
+  useEffect(() => {
+    const dupa = (event) => {
+      switch (event.keyCode) {
+        case 37:
+          moveHandler(gamerX, gamerY - 1)
+          // console.log("lewo", gamerX, gamerY)
+          break;
+        case 38:
+          moveHandler(gamerX - 1, gamerY)
+          // console.log("gora", gamerX, gamerY)
+          break;
+        case 39:
+          moveHandler(gamerX, gamerY + 1)
+          // console.log("prawo", gamerX, gamerY)
+          break;
+        case 40:
+          moveHandler(gamerX + 1, gamerY)
+          // console.log("dol", gamerX + 1, gamerY)
+          break;
+        default:
+          console.log(event.key)
+      }
+    };
+    window.addEventListener("keydown", dupa)
+    return () => {
+      window.removeEventListener("keydown", dupa)
+    }
+  });
+
 
   return (
     <div style={wrapperStyle}>
