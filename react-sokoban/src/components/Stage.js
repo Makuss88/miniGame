@@ -3,7 +3,7 @@ import produce from 'immer';
 
 import './styles/stage.css'
 
-var _ = require('lodash');
+
 const WALL = "WALL";
 const FLOOR = "FLOOR";
 const BOX = "BOX";
@@ -40,7 +40,7 @@ const Stage = (props) => {
     };
     printBox(board);
     printTarget(board);
-    // printWall(board);
+    printWall(board);
     printGamer(board);
     return board;
   }
