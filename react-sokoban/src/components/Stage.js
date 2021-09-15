@@ -208,7 +208,7 @@ const Stage = (props) => {
             />)
         )
       }
-    </div >
+    </div>
   );
 };
 
