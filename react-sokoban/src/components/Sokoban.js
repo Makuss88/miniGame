@@ -25,7 +25,7 @@ const Sokoban = () => {
   return (
     <StyledSokobanWrapper >
       <StyledSokoban>
-        <Stage onMoveHandler={moveHandler} />
+        <Stage moveHandler={moveHandler} />
         <aside>
           <div>
             <Display text={counterText} />
